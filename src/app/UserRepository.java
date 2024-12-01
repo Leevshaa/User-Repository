@@ -6,16 +6,12 @@ import java.util.Optional;
 
 public class UserRepository {
 
-    private List<User> users = Arrays.asList(
+    private final List<User> users = Arrays.asList(
             new User(1000, "Valentin", "valentin@gmail.com"),
             new User(1001, "Olya", "olya@gmail.com"),
             new User(1002, "Katerina", "katerina@gmail.com"),
             new User(1003, "Vadim", "vadim@gmail.com")
     );
-
-    public UserRepository(List<User> users) {
-        this.users = users;
-    }
 
     private Optional<User> findUserById(int id) {
         return users.stream().filter(user -> user.getId() == id).findFirst();
@@ -31,5 +27,17 @@ public class UserRepository {
         } else {
             return Optional.of(users);
         }
+    }
+
+    public Optional<User> getFindUserById(int id) {
+        return findUserById(id);
+    }
+
+    public Optional<User> getFindUserByEmail(String email) {
+        return findUserByEmail(email);
+    }
+
+    public Optional<List<User>> getFindAllUsers() {
+        return findAllUsers();
     }
 }
